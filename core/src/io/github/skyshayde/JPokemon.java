@@ -54,32 +54,8 @@ public class JPokemon extends Game {
 
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
-        batch.begin();
-        batch.draw(player.frames[player.currFrame+player.walkState], 8 * 32f, 8 * 32f);
-        batch.end();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            player.move(1);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            player.move(2);
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
-            player.move(3);
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            player.move(4);
-        if (player.x != 0) {
-            int move = player.x > 0 ? 1 : -1;
-            move = move * 2;
-            camera.translate(move, 0);
-            player.x = player.x + move * -1;
-            player.walkState = player.walkState > 2 ? player.walkState = 0 : player.walkState + 1;
-        }
-        if (player.y != 0) {
-            int move = player.y > 0 ? 1 : -1;
-            move = move * 2;
-            camera.translate(0, move);
-            player.y = player.y + move * -1;
-            player.walkState = player.walkState > 2 ? player.walkState = 0 : player.walkState + 1;
-        }
+        player.drawAndMove(batch);
     }
 
     @Override
